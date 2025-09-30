@@ -1,0 +1,106 @@
+groups:
+- name: custom_cos_f025423d_alertmanager_AlertmanagerConfigurationReloadFailure_alerts
+  rules:
+  - alert: AlertmanagerConfigurationReloadFailure_Custom
+    annotations:
+      description: 'Alertmanager configuration reload error
+
+        VALUE = {{ $value }}
+
+        LABELS = {{ $labels }}
+
+        '
+      summary: Alertmanager configuration reload failure (instance {{ $labels.instance
+        }})
+    expr: alertmanager_config_last_reload_successful{juju_application="alertmanager",juju_model="cos",juju_model_uuid="f025423d-b1b1-4ec5-8808-a1204cfe044d"}
+      != 1
+    for: 0m
+    labels:
+      juju_application: alertmanager
+      juju_charm: alertmanager-k8s
+      juju_model: cos
+      juju_model_uuid: f025423d-b1b1-4ec5-8808-a1204cfe044d
+      severity: warning
+      origin: custom_repo
+      focus: '4'
+- name: custom_cos_f025423d_alertmanager_AlertmanagerNotificationsFailed_alerts
+  rules:
+  - alert: AlertmanagerNotificationsFailed_Custom
+    annotations:
+      description: 'Alertmanager notifications failure
+
+        VALUE = {{ $value }}
+
+        LABELS = {{ $labels }}
+
+        '
+      summary: Alertmanager notifications failure (instance {{ $labels.instance }})
+    expr: rate(alertmanager_notifications_failed_total{integration=~".*",juju_application="alertmanager",juju_model="cos",juju_model_uuid="f025423d-b1b1-4ec5-8808-a1204cfe044d"}[5m])
+      > 0.1
+    for: 10
+    labels:
+      juju_application: alertmanager
+      juju_charm: alertmanager-k8s
+      juju_model: cos
+      juju_model_uuid: f025423d-b1b1-4ec5-8808-a1204cfe044d
+      severity: warning
+      origin: custom_repo
+      focus: '4'
+- name: custom_cos_f025423d_alertmanager_AlertmanagerJobMissing_alerts
+  rules:
+  - alert: AlertmanagerJobMissing_Custom
+    annotations:
+      description: 'A Alertmanager job has disappeared
+
+        VALUE = {{ $value }}
+
+        LABELS = {{ $labels }}
+
+        '
+      summary: Alertmanager job missing (instance {{ $labels.instance }})
+    expr: absent(up{juju_application="alertmanager",juju_model="cos",juju_model_uuid="f025423d-b1b1-4ec5-8808-a1204cfe044d"})
+    for: 0m
+    labels:
+      juju_application: alertmanager
+      juju_charm: alertmanager-k8s
+      juju_model: cos
+      juju_model_uuid: f025423d-b1b1-4ec5-8808-a1204cfe044d
+      severity: warning
+      origin: custom_repo
+      focus: '4'
+- name: custom_cos_f025423d_alertmanager_HostHealth_alerts
+  rules:
+  - alert: HostDown_Custom
+    annotations:
+      description: "Host '{{ $labels.instance }}' is down, failed to scrape.\n   \
+        \                         VALUE = {{ $value }}\n                         \
+        \   LABELS = {{ $labels }}"
+      summary: Host '{{ $labels.instance }}' is down.
+    expr: up{juju_application="alertmanager",juju_model="cos",juju_model_uuid="f025423d-b1b1-4ec5-8808-a1204cfe044d"}
+      < 1
+    for: 5m
+    labels:
+      juju_application: alertmanager
+      juju_charm: alertmanager-k8s
+      juju_model: cos
+      juju_model_uuid: f025423d-b1b1-4ec5-8808-a1204cfe044d
+      severity: warning
+      origin: custom_repo
+      focus: '4'
+  - alert: HostMetricsMissing_Custom
+    annotations:
+      description: "Metrics not received from host '{{ $labels.instance }}', failed\
+        \ to remote write.\n                            VALUE = {{ $value }}\n   \
+        \                         LABELS = {{ $labels }}"
+      summary: Metrics not received from host '{{ $labels.instance }}', failed to
+        remote write.
+    expr: absent(up{juju_application="alertmanager",juju_model="cos",juju_model_uuid="f025423d-b1b1-4ec5-8808-a1204cfe044d"})
+    for: 5m
+    labels:
+      juju_application: alertmanager
+      juju_charm: alertmanager-k8s
+      juju_model: cos
+      juju_model_uuid: f025423d-b1b1-4ec5-8808-a1204cfe044d
+      severity: warning
+      origin: custom_repo
+      focus: '4'

@@ -1,0 +1,13 @@
+alert: myalert5  # same alertname as the working one
+expr: vector(1)
+for: 0m
+labels:
+  juju_application: grafana-agent
+  juju_charm: grafana-agent
+  juju_model: ceph-build-plus
+  juju_model_uuid: f025423d-b1b1-4ec5-8808-a1204cfe044d
+  severity: warning
+  focus: "4"
+annotations:
+  summary: Test alert using same labels/group
+  description: This is test alert for Kopah alerting
