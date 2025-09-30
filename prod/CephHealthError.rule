@@ -1,0 +1,9 @@
+alert: CephHealthError
+expr: ceph_health_status{juju_application="ceph-mon",juju_model="ceph-build-plus",juju_model_uuid="8760a199-e648-4ac7-8507-4134b9b9e7b4"} == 2
+for: 5m
+labels:
+severity: warning
+type: ceph_default
+annotations:
+description: The cluster state has been HEALTH_ERROR for more than 5 minutes. Please check 'ceph health detail' for more information.
+summary: Ceph is in the ERROR state
