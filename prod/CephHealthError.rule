@@ -3,8 +3,7 @@ expr: ceph_health_status{juju_application="ceph-mon",juju_model="ceph-build-plus
 for: 5m
 labels:
   severity: warning
-  type: ceph_default
 annotations:
-  description: The cluster state has been HEALTH_ERROR for more than 5 minutes. Please check 'ceph health detail' for more information.
-  summary: Ceph is in the ERROR state
+  description: "The cluster state has been HEALTH_ERROR for more than 5 minutes. Please check 'ceph health detail' for more information."
+  summary: "Ceph is in the ERROR state"
 
