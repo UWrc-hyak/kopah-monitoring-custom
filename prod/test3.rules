@@ -1,9 +1,0 @@
-alert: myalert
-expr: up{juju_application="myalert"} == 0
-for: 0m
-labels:
-  severity: info
-  origin: github
-  gitbranch: main
-annotations:
-  summary: This is my alert 0903
