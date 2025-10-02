@@ -1,4 +1,4 @@
-alert: CephHealthError
+alert: CephHealthError-custom
 expr: ceph_health_status{juju_application="ceph-mon",juju_model="ceph-build-plus",juju_model_uuid="8760a199-e648-4ac7-8507-4134b9b9e7b4"} == 2
 for: 5m
 labels:
