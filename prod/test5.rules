@@ -5,9 +5,8 @@ labels:
   juju_application: grafana-agent
   juju_charm: grafana-agent
   juju_model: ceph-build-plus
-  juju_model_uuid: f025423d-b1b1-4ec5-8808-a1204cfe044d
   severity: warning
 #  focus: "4"
 annotations:
-  summary: Kopah Test alert 
-  description: This is test alert for Kopah alerting
+  summary: "Kopah Test alert  1017_2"
+  description: "This is test alert for Kopah alerting"
